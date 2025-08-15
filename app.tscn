@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_d7sxu"]
 font = ExtResource("1_qbwvd")
 font_size = 200
-font_color = Color(0.929715, 0.929715, 0.929715, 1)
+font_color = Color(0.589096, 0.589096, 0.589095, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nee2x"]
 
@@ -64,7 +64,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0646965, 0.0646965, 0.0646965, 1)
 
 [node name="pomo" type="Label" parent="."]
 layout_mode = 1
@@ -150,6 +149,9 @@ one_shot = true
 
 [node name="update" type="Timer" parent="."]
 autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.711545, 0.529977, 0.452792, 1)
 
 [connection signal="pressed" from="btn/mode" to="." method="_on_mode_pressed"]
 [connection signal="pressed" from="btn/stop" to="." method="_on_stop_pressed"]
