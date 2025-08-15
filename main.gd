@@ -21,7 +21,6 @@ var is_paused : bool = false
 
 
 
-
 # pom mode : 50/10 or 25/5
 # 25/5 default mode
 var work_duration : int = 25
@@ -36,10 +35,12 @@ func start_pom():
 	elif current_pom_state == POMSTATE.WORK:
 		pom_timer.start((break_duration * 60) - 1)
 		current_pom_state = POMSTATE.BREAK
-		
+	update_pom()
+	
 func stop_pom():
 	pom_timer.stop()
 	current_pom_state = POMSTATE.STOPPED
+	update_pom()
 	
 func toggle_pause():
 	if is_paused:
@@ -50,6 +51,7 @@ func toggle_pause():
 		current_pom_state = POMSTATE.PAUSED
 		
 	is_paused = !is_paused
+	update_pom()
 	
 func toggle_mode():
 	stop_pom()
@@ -61,14 +63,6 @@ func toggle_mode():
 		break_duration = 5
 	update_pom()
 
-func toggle_night_mode():
-	if is_night_mode:
-		$AnimationPlayer.play("white_mode")
-	else:
-		$AnimationPlayer.play("night_mode")
-	
-	is_night_mode = !is_night_mode
-	
 	
 func update_pom():
 	if current_pom_state == POMSTATE.NOTLAUNCHED or current_pom_state == POMSTATE.STOPPED:
@@ -105,6 +99,9 @@ func _on_main_pressed() -> void:
 		
 	update_pom()
 	
+func kill():
+	get_tree().quit()
+
 func _on_pom_timer_timeout() -> void:
 	print("restarting")
 	start_pom()
@@ -119,9 +116,9 @@ func _on_stop_pressed() -> void:
 	stop_pom()
 
 
-func _on_night_pressed() -> void:
-	toggle_night_mode()
-
-
 func _on_mode_pressed() -> void:
 	toggle_mode()
+
+
+func _on_kill_pressed() -> void:
+	kill()
