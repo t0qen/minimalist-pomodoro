@@ -1,0 +1,230 @@
+[gd_scene load_steps=28 format=3 uid="uid://djq8h3hpjh851"]
+
+[ext_resource type="FontFile" uid="uid://uyiea0jl1p60" path="res://fonts/CascadiaMono-VariableFont_wght.ttf" id="1_qbwvd"]
+[ext_resource type="Script" uid="uid://cdkuvboidy6aj" path="res://main.gd" id="2_i4801"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d7sxu"]
+font = ExtResource("1_qbwvd")
+font_size = 250
+font_color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nee2x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7vdx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_atqe7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5oejy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x8rub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_acaik"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jndut"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ovwn0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7iiwk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a37lv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtgpg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra7kh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjbw5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jq15t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rgcu8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iho0w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dv8dk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kd73m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4pmb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1v2j6"]
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+resource_name = "white_mode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("temperature:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.714508, 0.588369, 0.565154, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pomo:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.412152, 0.412152, 0.412152, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "night_mode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("temperature:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.714508, 0.588369, 0.565154, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pomo:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0.412152, 0.412152, 0.412152, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qbwvd"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lquwl"]
+_data = {
+&"RESET": SubResource("Animation_qbwvd"),
+&"night_mode": SubResource("Animation_1bvp3"),
+&"white_mode": SubResource("Animation_h2yge")
+}
+
+[node name="app" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_i4801")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pomo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = -199.0
+offset_right = 366.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "25:00"
+label_settings = SubResource("LabelSettings_d7sxu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 210.0
+offset_top = 178.5
+offset_right = 250.0
+offset_bottom = 218.5
+
+[node name="mode" type="Button" parent="btn"]
+layout_mode = 0
+offset_left = -205.0
+offset_top = -170.5
+offset_right = -97.0
+offset_bottom = -60.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nee2x")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v7vdx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_atqe7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_5oejy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_x8rub")
+flat = true
+
+[node name="stop" type="Button" parent="btn"]
+layout_mode = 0
+offset_left = 763.0
+offset_top = -175.5
+offset_right = 931.0
+offset_bottom = -24.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_acaik")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_jndut")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ovwn0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7iiwk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_a37lv")
+flat = true
+
+[node name="main" type="Button" parent="btn"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -170.5
+offset_right = 759.0
+offset_bottom = 71.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gtgpg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ra7kh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_gjbw5")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_jq15t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rgcu8")
+flat = true
+
+[node name="night" type="Button" parent="btn"]
+layout_mode = 0
+offset_left = -205.0
+offset_top = 326.5
+offset_right = -56.0
+offset_bottom = 461.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iho0w")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dv8dk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kd73m")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_j4pmb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1v2j6")
+flat = true
+
+[node name="temperature" type="CanvasModulate" parent="."]
+color = Color(0.714508, 0.588369, 0.565154, 1)
+
+[node name="pom_timer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="update" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lquwl")
+}
+
+[connection signal="pressed" from="btn/mode" to="." method="_on_mode_pressed"]
+[connection signal="pressed" from="btn/stop" to="." method="_on_stop_pressed"]
+[connection signal="pressed" from="btn/main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="btn/night" to="." method="_on_night_pressed"]
+[connection signal="timeout" from="pom_timer" to="." method="_on_pom_timer_timeout"]
+[connection signal="timeout" from="update" to="." method="_on_update_timeout"]
